@@ -5,16 +5,16 @@ const app = express();
 const userRoutes = require('./routers/user-router');
 const auth = require('./middleware/Auth');
 const {getUserbyId} = require('./controllers/user-controller');
-// const logger = (req,res,next)=>{
-//   console.log('logging....');
-//    next();
-// }
-// const authication = (req,res,next)=>{
-//   console.log('Authenicated');
-//    next();
-// }
+const logger = (req,res,next)=>{
+  console.log('logging....');
+   next();
+}
+const authication = (req,res,next)=>{
+  console.log('Authenicated');
+   next();
+}
 app.use(express.json());
-// app.use([authication,logger]);
+app.use([authication,logger]);
 // app.use(auth);
 
 app.use('/api/users',userRoutes);
@@ -26,12 +26,12 @@ app.use('/api/users',userRoutes);
 //   res.status(200).json('get user successfully');
 // })
 
-// app.get('/',(req,res)=>{
-//   res.status(200).send('home page');
-// })
-// app.get('/products',(req,res)=>{
-//   res.status(200).send('products');
-// })
+app.get('/',(req,res)=>{
+  res.status(200).send('home page');
+})
+app.get('/products',(req,res)=>{
+  res.status(200).send('products');
+})
 
 
 
